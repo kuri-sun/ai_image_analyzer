@@ -1,4 +1,4 @@
-# AWS Lambda + Rekognition
+# AWS AI Image detection
 
 S3-event triggers whenever an image is added to an S3 bucket. The trigger will invoke a Lambda function. 
 This Lambda function will call AWS Rekognition, and output the results in the same S3 bucket as a JSON file.
