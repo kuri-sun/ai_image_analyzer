@@ -1,0 +1,23 @@
+{
+  "name": "aws",
+  "version": "1.0.0",
+  "description": "S3-event triggers whenever an image is added to an S3 bucket. The trigger will invoke a Lambda function.  This Lambda function will call AWS Rekognition, and output the results in the same S3 bucket as a JSON file.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuri-sun/img_label.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kuri-sun/img_label/issues"
+  },
+  "homepage": "https://github.com/kuri-sun/img_label#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1472.0"
+  }
+}
