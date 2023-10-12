@@ -1,13 +1,10 @@
-"""
-Purpose
-An AWS lambda function that analyzes images with an the Amazon Rekognition
-Custom Labels model.
-"""
+
 import json
 import base64
 from os import environ
 import logging
 import boto3
+import datetime
 
 from botocore.exceptions import ClientError
 
@@ -15,12 +12,11 @@ from botocore.exceptions import ClientError
 logger = logging.getLogger(__name__)
 
 # Get the model ARN and confidence.
-model_arn = environ['MODEL_ARN']
 min_confidence = int(environ.get('CONFIDENCE', 50))
 
 # Get the boto3 client.
 rek_client = boto3.client('rekognition')
-
+s3_client = boto3.client('s3')
 
 def lambda_handler(event, context):
     """
@@ -33,37 +29,33 @@ def lambda_handler(event, context):
 
     try:
 
+        
+        records = event['Records'][0]
         # Determine image source.
-        if 'image' in event:
-            # Decode the image
-            image_bytes = event['image'].encode('utf-8')
-            img_b64decoded = base64.b64decode(image_bytes)
-            image = {'Bytes': img_b64decoded}
-
-
-        elif 'S3Object' in event:
-            image = {'S3Object':
-                     {'Bucket':  event['S3Object']['Bucket'],
-                      'Name': event['S3Object']['Name']}
-                     }
-
-        else:
-            raise ValueError(
-                'Invalid source. Only image base 64 encoded image bytes or S3Object are supported.')
-
-
+        image = {
+            'S3Object':
+            {
+                'Bucket':  records['s3']['bucket']['name'],
+                'Name': records['s3']['object']['key']
+            }
+        }
+        
         # Analyze the image.
-        response = rek_client.detect_custom_labels(Image=image,
-            MinConfidence=min_confidence,
-            ProjectVersionArn=model_arn)
-
-        # Get the custom labels
-        labels = response['CustomLabels']
+        response = rek_client.detect_faces(Attributes=['ALL'], Image=image)
 
         lambda_response = {
             "statusCode": 200,
-            "body": json.dumps(labels)
+            "body": json.dumps(response)
         }
+        
+        print("Here is event img", records['s3']['object']['key'])
+        # Upload the result to s3
+        s3_client.put_object(
+            Bucket=records['s3']['bucket']['name'],
+            Key='result.json',
+            Body=json.dumps(response)
+        )
+        
 
     except ClientError as err:
         error_message = f"Couldn't analyze image. " + \
@@ -91,3 +83,4 @@ def lambda_handler(event, context):
             context.invoked_function_arn, format(val_error))
 
     return lambda_response
+
