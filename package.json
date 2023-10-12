@@ -1,9 +1,0 @@
-{
-  "name": "aws",
-  "version": "1.0.0",
-  "private": false,
-  "description": "S3-event triggers whenever an image is added to an S3 bucket. The trigger will invoke a Lambda function.  This Lambda function will call AWS Rekognition, and output the results in the same S3 bucket as a JSON file.",
-   "dependencies": {
-    "aws-sdk": "^2.311.0"
-  }
-}
