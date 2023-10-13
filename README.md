@@ -4,14 +4,15 @@ S3-event triggers whenever an image is added to an S3 bucket. The trigger will i
 This Lambda function will call AWS Rekognition, and output the results in the same S3 bucket as a JSON file.
 
 ## Cloud Architecture
-![Untitled Diagram drawio](https://github.com/kuri-sun/img_label/assets/62743644/925787db-c28c-415c-bf60-72837618b607)
+![Untitled Diagram drawio (1)](https://github.com/kuri-sun/ai_image_analyzer/assets/62743644/c1ce1c29-d24a-495c-949c-0c5c2a33aac9)
 
 ## Usage
-1. Clone this repo.
-2. Go to AWS Console.
-3. Create a Python Lambda function When you create the function, add a Role giving full access to CloudWatch, Rekognition, and S3.
-4. Go to your S3 bucket. We are going to add a trigger so that our function fires whenever a image is added. Click the "Properties" tab. Add a Lambda trigger for S3-PUT-event.
-5. Upload a image to the S3 bucket. In a moment or so, you will see a 'result.json' file with the results.
+1. Go to AWS Console.
+3. Create a Python Lambda function based on the src/index.py, add a Role giving full access to CloudWatch, Rekognition, and S3.
+4. Set up API Gateway and connect that to the Lambda functrion. (set up some firewall and api throttle, if you want)
+5. Serverless BE is ready(fast! and easy-to-manage!), let's create FE by build the React app.
+6. Go to S3, and deploy this by using static-website-hosting feature of S3.
+7. You are ready, check out your S3 web app endpoint to use the app!
 
 ## WorkFlow
 https://github.com/kuri-sun/img_label/assets/62743644/40d70cf3-21f6-45d3-9ab7-d4aa23ec0802
