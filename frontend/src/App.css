@@ -1,0 +1,26 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.analyze-button,
+.retake-button,
+.capture-button {
+  height: 40px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.ai-result {
+
+}

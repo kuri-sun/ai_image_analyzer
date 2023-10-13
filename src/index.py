@@ -4,58 +4,43 @@ import base64
 from os import environ
 import logging
 import boto3
-import datetime
 
 from botocore.exceptions import ClientError
 
 # Set up logging.
 logger = logging.getLogger(__name__)
-
-# Get the model ARN and confidence.
-min_confidence = int(environ.get('CONFIDENCE', 50))
-
-# Get the boto3 client.
+# Get the Rekognition client.
 rek_client = boto3.client('rekognition')
+# Get the S3 client.
 s3_client = boto3.client('s3')
 
 def lambda_handler(event, context):
-    """
-    Lambda handler function
-    param: event: The event object for the Lambda function.
-    param: context: The context object for the lambda function.
-    return: The labels found in the image passed in the event
-    object.
-    """
 
     try:
 
+        # Extract the image from HTTP Request.
+        s3_bucket_name = 'your-bucket-name'
+        s3_object_key = 'images/' + event['filename']
+        upload_file_content = base64.b64decode(event['body'])
+
+        # Upload the image to S3.
+        s3_client.put_object(Bucket=s3_bucket_name, Key=s3_object_key, Body=upload_file_content)
         
-        records = event['Records'][0]
-        # Determine image source.
+        # Analyze the image by Rekognition.
         image = {
             'S3Object':
             {
-                'Bucket':  records['s3']['bucket']['name'],
-                'Name': records['s3']['object']['key']
+                'Bucket': s3_bucket_name,
+                'Name': s3_object_key,
             }
         }
-        
-        # Analyze the image.
         response = rek_client.detect_faces(Attributes=['ALL'], Image=image)
 
+        # Set HTTP response.
         lambda_response = {
             "statusCode": 200,
             "body": json.dumps(response)
         }
-        
-        print("Here is event img", records['s3']['object']['key'])
-        # Upload the result to s3
-        s3_client.put_object(
-            Bucket=records['s3']['bucket']['name'],
-            Key='result.json',
-            Body=json.dumps(response)
-        )
-        
 
     except ClientError as err:
         error_message = f"Couldn't analyze image. " + \
