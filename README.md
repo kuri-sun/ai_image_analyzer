@@ -1,6 +1,6 @@
 # AWS Project - AI Face Image Analyze
 
-FE React app takes the user's face and send to the BE. FE consists of S3, BE is by Lambda and API Gateway.
+FE React app takes a photo of the user's face and send it to the BE. FE consists of S3, BE is by Lambda and API Gateway.
 BE sends the image AWS Rekognition to analyze it, and sends back the result.
 
 ## Cloud Architecture
