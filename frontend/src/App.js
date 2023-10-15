@@ -45,6 +45,12 @@ function App() {
       });
   }
 
+  function onClickRetake() {
+    setCapturedPhoto(null);
+    setAnalyzeResult(null);
+  }
+
+  // Each analyze result entry
   function renderEntry(label, value) {
     return (
       <div className="section">
@@ -54,6 +60,7 @@ function App() {
     );
   }
 
+  // Calculate which "emotion" is the most effective.
   function findMostApplicableEmotion(emotions) {
     let bestFit = emotions[0];
     emotions.forEach((emotion) => {
@@ -73,7 +80,7 @@ function App() {
             {/* Image Preview */}
             <img className="captured-image" alt="preview" src={capturedPhoto} />
             {/* Analyze result */}
-            {
+            {analyzeResult && (
               <div className="result-container">
                 <div className="result-title">
                   Here are something we can tell from your face...
@@ -113,14 +120,12 @@ function App() {
                   );
                 })}
               </div>
-            }
+            )}
             {/* Retake & Analyze button */}
             <div className="buttons">
               <button
                 className="button gray-button"
-                onClick={() => {
-                  setCapturedPhoto(null);
-                }}
+                onClick={onClickRetake}
                 disabled={isLoading}
               >
                 Retake
