@@ -22,8 +22,8 @@ Application URL: <a href="https://bright-quokka-aa4351.netlify.app" target="_bla
 
 https://github.com/kuri-sun/ai_image_analyzer/assets/62743644/63d93f34-42f1-4575-8f54-11b6c801ab32
 
-## AI JSON results look like...
+## The AI API result
 
-AWS Rekognition generates the AI anaylzed result like below. Consider bring AI on your product.
-https://github.com/kuri-sun/ai_image_analyzer/assets/62743644/8dae8eb3-4d81-47d7-acb7-9843794b65da
-Example JSON result: https://github.com/kuri-sun/img_label/files/12877991/result.json
+AWS Rekognition generates the AI anaylzed result like below. Consider bring AI on your product. Also Example JSON result: https://github.com/kuri-sun/img_label/files/12877991/result.json
+![Screenshot 2023-10-15 at 4 49 36 PM](https://github.com/kuri-sun/ai_image_analyzer/assets/62743644/8dae8eb3-4d81-47d7-acb7-9843794b65da)
+
