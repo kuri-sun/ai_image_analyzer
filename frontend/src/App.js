@@ -117,9 +117,6 @@ function App() {
 
   // Send a request and the taken image to AWS, to analyze the result.
   function onClickAnalyze() {
-    setAnalyzeResult(r);
-    return;
-
     setIsLoading(true);
     axios
       .post(
@@ -168,7 +165,11 @@ function App() {
           // Showing captured image
           <>
             {/* Image Preview */}
-            <img className="captured-image" src={capturedPhoto} />
+            <img
+              className="captured-image"
+              alt="caputred-image"
+              src={capturedPhoto}
+            />
             {/* Analyze result */}
             {
               <div className="result-container">
