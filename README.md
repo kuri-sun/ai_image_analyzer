@@ -4,7 +4,7 @@ The FE React app takes a photo of the user's face and send it to the serverless 
 The BE sends the image AWS Rekognition to analyze it, and sends back the result.
 <br/>
 <br/>
-Application URL: <a href="htt//main--bright-quokka-aa4351.netlify.app/" target="_blank">htt//main--bright-quokka-aa4351.netlify.app/</a>
+Application URL: <a href="https://bright-quokka-aa4351.netlify.app" target="_blank">htts://main--bright-quokka-aa4351.netlify.app/</a>
 
 ## Cloud Architecture
 
