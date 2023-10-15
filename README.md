@@ -20,7 +20,7 @@ Application URL: <a href="https://bright-quokka-aa4351.netlify.app" target="_bla
 
 ## WorkFlow
 
-https://github.com/kuri-sun/img_label/assets/62743644/40d70cf3-21f6-45d3-9ab7-d4aa23ec0802
+https://github.com/kuri-sun/ai_image_analyzer/assets/62743644/63d93f34-42f1-4575-8f54-11b6c801ab32
 
 ## AI Example results
 
