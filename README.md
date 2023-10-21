@@ -19,7 +19,7 @@ The BE sends the image AWS Rekognition to analyze it, and sends back the result.
 
 ## WorkFlow
 
-https://github.com/kuri-sun/ai_image_analyzer/assets/62743644/63d93f34-42f1-4575-8f54-11b6c801ab32
+https://github.com/kuri-sun/ai_image_analyzer/assets/62743644/cbcff02a-9116-42c9-bdac-fc3d833c3cbc
 
 ## The AI API result
 
