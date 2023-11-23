@@ -1,4 +1,4 @@
-# AWS Project - AI Face Image Analyze
+# AI Face Image Analyze
 
 The FE React app takes a photo of the user's face and send it to the serverless BE. the FE can be hosted by Netlify, the BE is by Lambda and API Gateway.
 The BE sends the image AWS Rekognition to analyze it, and sends back the result.
